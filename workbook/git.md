@@ -3,6 +3,17 @@
 
 > Git工作流程图
 
+```bash
+//添加全部
+git add .
+
+//提交全部
+git commit -m '更新日志'
+
+//提交到服务器
+git push origin master
+```
+
 ![img](https://img2023.cnblogs.com/blog/3134450/202308/3134450-20230816155907836-1566095029.png)
 
 ```bash
