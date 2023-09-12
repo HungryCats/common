@@ -1,5 +1,28 @@
 # 随笔
 
+## Git：删除所有 Commit 提交记录
+
+1. 创建孤立分支，并切换到该分支
+
+2. 暂存所有文件
+
+3. 提交所有更改
+
+4. 删除主分支 master
+
+5. 重命名当前分支为 master
+
+6. 强制推送本地分支
+
+```bash
+git checkout --orphan latest_branch
+git add -A
+git commit -am "First Commit"
+git branch -D master
+git branch -m master
+git push -f origin master
+```
+
 ---
 
 ## CSS包含块
