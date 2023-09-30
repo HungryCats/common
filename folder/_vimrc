@@ -44,7 +44,7 @@ endfunction
 
 
 inoremap jk <ESC>`^
-nnoremap tw  :tabnew<CR>
+nnoremap tt  :tabnew<CR>
 nnoremap tc  :tabclose<CR>
 nnoremap tn  :tabnext<CR>
 nnoremap tu  :tabprev<CR>
@@ -237,9 +237,8 @@ highlight! link NERDTreeFlags NERDTreeDir
 " 自动补全括号的插件，包括小括号，中括号，以及花括号
 Plug 'jiangmiao/auto-pairs'
 
-" 多光标
+" 多光标 ctrl + n
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
 
 " 主题
 Plug 'morhetz/gruvbox'
@@ -261,20 +260,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols = {}
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.dirty='⚡'
 let g:airline_theme='night_owl'
 
 " EasyMotion
@@ -327,7 +312,6 @@ Plug 'scrooloose/syntastic'
 " 模糊搜索查找器
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
-
 " 格式化插件
 Plug 'vim-autoformat/vim-autoformat'
 
@@ -379,6 +363,7 @@ call plug#end()
 set background=dark
 " colorscheme gruvbox
 colorscheme night-owl
+
 
 " 格式化
 noremap <F3> :Autoformat<CR>

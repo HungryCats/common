@@ -1,0 +1,134 @@
+" Source your _vimrc
+" source ~/_vimrc
+
+imap jk <Esc>
+" 设置leader键
+let mapleader=" "
+
+" surround插件
+set surround
+" easymotion
+let g:EasyMotion_do_mapping = 0
+set easymotion
+nmap <leader><leader> <Plug>(easymotion-s)
+
+" 仿真NERDTree插件
+" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+set NERDTree
+nmap <leader>e :NERDTreeToggle<CR>
+
+" 复制时高亮
+set highlightedyank
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
+" https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
+set ReplaceWithRegister
+nmap rs  <Plug>ReplaceWithRegisterOperator
+nmap rss <Plug>ReplaceWithRegisterLine
+vmap rs  <Plug>ReplaceWithRegisterVisual
+
+" 注释
+set commentary
+
+"提示音静音
+set noerrorbells
+set visualbell
+"编码设置
+set encoding=utf-8
+"设置取消备份 禁止临时文件生成
+set nobackup
+set noswapfile
+" 启用鼠标
+set mouse=a
+" "设置在光标距离窗口顶部或底部一定行数时，开始滚动屏幕内容的行为
+set scrolloff=5
+"Vim 会在您输入搜索模式的过程中逐步匹配并高亮显示匹配的文本
+set incsearch
+"--在搜索时忽略大小写
+set ignorecase
+" 有一个或以上大写字母时仍大小写敏感
+set smartcase
+"--将搜索匹配的文本高亮显示
+set hlsearch
+" 去掉搜索高亮
+nmap <ESC> :noh<CR>
+" 在状态栏显示正在输入的命令
+set showmode
+"总是显示状态行 
+set laststatus=2
+"--设置相对行号 和 当前行的绝对行号
+set number
+set relativenumber
+" Vim 的默认寄存器和系统剪贴板共享
+set clipboard+=unnamed
+set history=100000
+"--设置返回normal模式时回到英文输入法
+set keep-english-in-normal
+" 移动到行首
+nnoremap H ^
+" 移动到行尾
+nnoremap L $
+" 复制到行末
+nnoremap Y y$
+" 插入模式下的移动
+imap <C-h> <Left>
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-l> <Right>
+" 打开终端
+nmap `` <Action>(ActivateTerminalToolWindow)
+"--普通模式下使用回车键，向下/向上 增加一行
+nmap <CR> o<Esc>
+nmap <S-Enter> O<Esc>
+
+" 生成get set方法
+nnoremap <Leader>cc :action Generate<CR>
+
+" 注释
+"nmap gcc <Action>(CommentByLineComment)
+"vmap gc <Action>(CommentByLineComment)<Esc>
+
+"翻译
+let g:WhichKeyDesc_Translate = "<leader>t Translate"
+nmap <leader>t <action>($EditorTranslateAction)
+vmap <leader>t <action>($EditorTranslateAction)
+
+" (保存关闭)
+" nnoremap <Leader>Q :qa!<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>w :w<CR>
+
+" Window operation
+" (关于窗口操作)
+" 窗口之间移动
+nnoremap sh <C-W>h
+nnoremap sl <C-W>l
+nnoremap sj <C-W>j
+nnoremap sk <C-W>k
+"上下分屏;
+nnoremap ss <C-W>s
+"横向分屏
+nnoremap sv <C-W>v
+
+" ide与vim的快捷键持久化
+sethandler <C-A> a:ide
+sethandler <C-C> a:ide
+sethandler <C-V> a:ide
+sethandler <C-X> a:ide
+sethandler <C-F> a:ide
+sethandler <C-Y> a:ide
+sethandler <C-D> a:ide
+sethandler <C-S> a:ide
+sethandler <C-P> a:ide
+sethandler <C-H> a:vim
+sethandler <C-L> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <S-Enter> a:vim
+
+"激活maven窗口
+nnoremap <Leader>mv :action ActivateMavenProjectsToolWindow<CR>
+
+" vim模式开关
+nmap <leader>vim <Action>(VimPluginToggle)
+
