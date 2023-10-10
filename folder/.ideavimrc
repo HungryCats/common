@@ -7,10 +7,11 @@ let mapleader=" "
 
 " surround插件
 set surround
+
 " easymotion
 let g:EasyMotion_do_mapping = 0
 set easymotion
-nnoremap <leader><leader> <Plug>(easymotion-s)
+map <leader><leader> <Plug>(easymotion-s)
 
 " 仿真NERDTree插件
 " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
@@ -23,7 +24,7 @@ set highlightedyank
 let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 
 " https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
-set ReplaceWithRegister
+set ReplaceWithRegister'
 nnoremap rs  <Plug>ReplaceWithRegisterOperator
 nnoremap rss <Plug>ReplaceWithRegisterLine
 vmap rs  <Plug>ReplaceWithRegisterVisual
@@ -80,7 +81,7 @@ imap <C-l> <Right>
 nmap `` <Action>(ActivateTerminalToolWindow)
 "--普通模式下使用回车键，向下/向上 增加一行
 nmap <CR> o<Esc>
-nmap <S-Enter> O<Esc>
+" nmap <S-Enter> O<Esc>
 
 " 生成get set方法
 nnoremap <Leader>cc :action Generate<CR>
@@ -93,6 +94,9 @@ nnoremap <Leader>cc :action Generate<CR>
 let g:WhichKeyDesc_Translate = "<leader>t Translate"
 nmap <leader>t <action>($EditorTranslateAction)
 vmap <leader>t <action>($EditorTranslateAction)
+
+" 重命名
+nnoremap <leader>r :action RenameElement<CR>
 
 " (保存关闭)
 nnoremap Q :wq<CR>
@@ -109,10 +113,13 @@ nnoremap ss <C-W>s
 "横向分屏
 nnoremap sv <C-W>v
 
-nnoremap <leader>r :action Run<CR>
-nnoremap <leader>b :action Debug<CR>
-nnoremap <leader>c :action Stop<CR>
-nnoremap <leader>g :action NewGroup<CR>
+nnoremap ,r :action Run<CR>
+nnoremap ,rc :action RunClass<CR>
+nnoremap ,d :action Debug<CR>
+nnoremap ,dc :action DebugClass<CR>
+nnoremap ,c :action Stop<CR>
+" New
+"nnoremap <leader>g :action NewGroup<CR>
 
 "激活maven窗口
 noremap <leader>m  :action ActivateMavenToolWindow<CR>
@@ -133,13 +140,15 @@ sethandler <C-F> a:ide
 sethandler <C-Y> a:ide
 sethandler <C-D> a:ide
 sethandler <C-S> a:ide
-sethandler <C-P> a:ide
 sethandler <C-B> a:ide
+sethandler <C-P> a:ide
+sethandler <C-O> a:ide
 sethandler <C-H> a:vim
 sethandler <C-L> a:vim
 sethandler <C-J> a:vim
 sethandler <C-K> a:vim
-sethandler <S-Enter> a:vim
+sethandler <C-Q> a:vim
 
 " vim模式开关
 nmap <leader>vim <Action>(VimPluginToggle)
+
