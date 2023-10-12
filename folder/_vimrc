@@ -49,161 +49,94 @@ nnoremap tc  :tabclose<CR>
 nnoremap tn  :tabnext<CR>
 nnoremap tu  :tabprev<CR>
 
-"利用转义符“\”将前缀键设置为空格键
-" let mapleader ="\<space>"
-let mapleader = ","
+nnoremap sv  :vsplit<CR>                      " 左右分屏
+nnoremap ss  :split<CR>                       " 上下分屏
+nnoremap sj  <C-W>j<CR>                       " 激活下方窗口
+nnoremap sk  <C-W>k<CR>                       " 激活上方窗口
+nnoremap sh  <C-W>h<CR>                       " 激活左侧窗口
+nnoremap sl  <C-W>l<CR>                       " 激活右侧窗口
+nnoremap <C-W>  <C-W>c<CR>                    " 关闭分屏
 
-" 使用 leader+w保存
-inoremap <leader>w <ESC>:w<cr>
+nnoremap - :resize -1<CR>                     " 缩减宽度
+nnoremap + :resize +1<CR>                     " 增加宽度
+nnoremap < :vertical resize -1<CR>            " 缩减高度
+nnoremap > :vertical resize +1<CR>            " 增加高度
+
+let mapleader = ","                    " let mapleader ="\<space>" "利用转义符“\”将前缀键设置为空格键
+set scrolloff=10                              " 垂直滚动时，光标距离顶部/底部的位置（单位：行）。
+set sidescrolloff=15                          " 水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。
+set spell spelllang=en_us                     " 打开英语单词的拼写检查。
+
+inoremap <leader>w <ESC>:w<cr>                " 使用 leader+w保存
 nnoremap <leader>w :w<CR>
 
-" <Ctrl-j> 可切换到下面的分割窗口
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" Vim行首、行尾光标移动按键映射
-nmap H ^
+nmap H ^                                      " Vim行首、行尾光标移动按键映射
 nmap L $
+map Y y$                                      " 将大写的 Y 按键映射为 y$
+noremap <silent><leader>. :nohls<CR>    " Vim 普通模式下执行 <leader> + .  取消搜索结果高亮显示
+map <Enter> o<ESC>                            " 插入空白行
+map rc : e $HOME\_vimrc<CR>                   " 打开配置文件
+set nocompatible                              " 不与 Vi 兼容
+set number                                    " 行号
+set relativenumber                            " 显示光标所在的当前行的行号，其他行都为相对于该行的相对行号。
 
-" 将大写的 Y 按键映射为 y$
-map Y y$
+set tm=500                                    " Color
+set t_Co=256                                  " 启用256色。
+syntax on                                     " 打开语法高亮。自动识别代码，使用多种颜色显示。
+set clipboard=unnamed                         " Clipboard 系统剪切板
+set showcmd                                   " 命令模式下，在底部显示，当前键入的指令。
+set mouse=a                                   " 支持使用鼠标。
+set encoding=UTF-8                            " 使用 utf-8 编码。
+filetype on                                   " 开启文件类型检测
+filetype plugin on                            " 开启插件的支持
+filetype indent on                            " 开启文件类型相应的缩进规则
 
-" Vim 普通模式下执行 <leader> + 空格  取消搜索结果高亮显示
-noremap <silent><leader><space> :nohls<CR>
-
-" 插入空白行
-map <Enter> o<ESC>
-
-" 预览html
-nmap <F5> ! start %<CR>
-
-" 打开配置文件
-map rc : e $HOME\_vimrc<CR> 
-
-
-" 不与 Vi 兼容
-set nocompatible
-
-" 行号
-set number
-
-" 显示光标所在的当前行的行号，其他行都为相对于该行的相对行号。
-set relativenumber
-
-" Color
-set tm=500
-set t_Co=256 " 启用256色。
-syntax enable " 打开语法高亮。自动识别代码，使用多种颜色显示。
-
-" Clipboard 系统剪切板
-set clipboard=unnamed
-
-" 命令模式下，在底部显示，当前键入的指令。
-set showcmd
-
-" 支持使用鼠标。
-set mouse=a
-
-" 使用 utf-8 编码。
-set encoding=UTF-8
-
-filetype on                     " 开启文件类型检测
-filetype plugin on              " 开启插件的支持
-filetype indent on              " 开启文件类型相应的缩进规则
-
-set autoindent " 按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。
-set smartindent " 智能缩进
-set tabstop=2 " 按下 Tab 键时，Vim 显示的空格数。
-set expandtab " 由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
-set shiftwidth=2 " 在文本上按下>>（增加一级缩进）、<<（取消一级缩进）或者==（取消全部缩进）时，每一级的字符数
-set incsearch " 实时搜索
-set ignorecase " 搜索时忽略大小写。
-set smartcase " 如果同时打开了ignorecase，那么对于只有一个大写字母的搜索词，将大小写敏感；其他情况都是大小写不敏感。比如，搜索Test时，将不匹配test；搜索test时，将匹配Test。
-
-" Make backspace work
-set backspace=2
+set autoindent                                " 按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。
+set smartindent                               " 智能缩进
+set tabstop=2                                 " 按下 Tab 键时，Vim 显示的空格数。
+set expandtab                                 " 由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
+set shiftwidth=2                              " 在文本上按下>>（增加一级缩进）、<<（取消一级缩进）或者==（取消全部缩进）时，每一级的字符数
+set incsearch                                 " 实时搜索
+set ignorecase                                " 搜索时忽略大小写。
+set smartcase                                 " 如果同时打开了ignorecase，那么对于只有一个大写字母的搜索词，将大小写敏感；其他情况都是大小写不敏感。比如，搜索Test时，将不匹配test；搜索test时，将匹配Test。
+set backspace=2                               " Make backspace work
 
 " Vim can highlight whitespaces for you in a convenient way:
 set list
 set listchars=tab:>_,trail:.,extends:#,nbsp:.
 
-" 光标所在的当前行高亮
-set cursorline
-
-" 搜索时，高亮显示匹配结果。
-set hlsearch
-
-" 设置行宽，即一行显示多少个字符。
-set textwidth=80
-
-" 自动折行，即太长的行分成几行显示。
-" set wrap
+set cursorline                                " 光标所在的当前行高亮
+set hlsearch                                  " 搜索时，高亮显示匹配结果。
+set textwidth=80                              " 设置行宽，即一行显示多少个字符。
 
 " 关闭自动折行
 set nowrap
 nnoremap <leader>z :set wrap! wrap?<CR>
 
-" 在状态栏显示光标的当前位置（位于哪一行哪一列）。
-set ruler
-
-
-" 不创建交换文件。交换文件主要用于系统崩溃时恢复文件，文件名的开头是.、结尾是.swp。
-set noswapfile 
-
-" 不保留撤销历史。
-set noundofile
-
-set novisualbell          "关掉可视化响铃警报
-set noerrorbells          "关掉错误警报
-set visualbell t_vb=      "关掉警报
+set ruler                                     " 在状态栏显示光标的当前位置（位于哪一行哪一列）。
+set noswapfile                                " 不创建交换文件。交换文件主要用于系统崩溃时恢复文件，文件名的开头是.、结尾是.swp。
+set noundofile                                " 不保留撤销历史。
+set novisualbell                              "关掉可视化响铃警报
+set noerrorbells                              "关掉错误警报
+set visualbell t_vb=                          "关掉警报
 au GuiEnter * set t_vb=
-
-" Vim 需要记住多少次历史操作。
-set history=1000
+set history=1000                              " Vim 需要记住多少次历史操作。
 
 " 命令模式下，底部操作指令按下 Tab 键自动补全。
 set wildmenu
 set wildmode=longest:list,full
 
-" 更改光标样式
-"SI = INSERT mode
-"SR = REPLACE mode
-"EI = NORMAL mode (ELSE)
-if &term =~ "xterm"
-    let &t_SI = "\<Esc>[6 q"
-    let &t_SR = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[2 q"
-endif
-
-if exists('$TMUX')
-    let &t_SI .= "\e[6 q"
-    let &t_SR .= "\e[3 q"
-  let &t_EI .= "\e[2 q"
-endif
-
-set showmode                             " 显示当前vim模式
-set showmatch                            " 显示匹配的括号
-set matchtime=1                          " 设置showmatch的效果时间，默认500ms，现在是100ms
+set showmode                                  " 显示当前vim模式
+set showmatch                                 " 显示匹配的括号
+set matchtime=1                               " 设置showmatch的效果时间，默认500ms，现在是100ms
 
 " vim图形化界面
-set guioptions=                 "去掉两边的scrollbar
-set guifont=Hack_Nerd_Font_Mono:h20          "设置字体和字的大小
+set guioptions=                               "去掉两边的scrollbar
+set guifont=Hack_Nerd_Font_Mono:h20           "设置字体和字的大小
 
-" gvim_fullscreen 全屏工具
-" toggle fullscreen mode by pressing F11
-noremap <f11> <esc>:call libcallnr('gvim_fullscreen.dll', 'ToggleFullscreen', 0)<cr>
-" toggle window transparency to 247 or 180 by pressing F12
-noremap <f12> <esc>:call libcallnr('gvim_fullscreen.dll', 'ToggleTransparency', "247,180")<cr>
-
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-set guioptions-=m
+nnoremap <C-v> :call VE()<CR>
 
 " 开始
-
 call plug#begin('~/.vim/plugged')
 
 " 语法高亮
@@ -211,49 +144,34 @@ Plug 'sheerun/vim-polyglot'
 
 " 用来提供一个导航目录的侧边栏
 Plug 'scrooloose/nerdtree'
-" 可以使 nerdtree 的 tab 更加友好些
 Plug 'jistr/vim-nerdtree-tabs'
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-au VimEnter * call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-au VimEnter * call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-au VimEnter * call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-au VimEnter * call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-au VimEnter * call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-au VimEnter * call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-au VimEnter * call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-au VimEnter * call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
-au VimEnter * call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-autocmd VimEnter * call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-highlight! link NERDTreeFlags NERDTreeDir
 
-" 自动补全括号的插件，包括小括号，中括号，以及花括号
+" 自动补全括号的插件
 Plug 'jiangmiao/auto-pairs'
 
 " 多光标 ctrl + n
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" 主题
-Plug 'morhetz/gruvbox'
-Plug 'haishanh/night-owl.vim'
+" 复制高亮
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = 200
 
+" 替换
+Plug 'vim-scripts/ReplaceWithRegister'
+nmap rs <Plug>ReplaceWithRegisterLine
+xmap rs  <Plug>ReplaceWithRegisterVisual
+
+" 主题
+Plug 'joshdick/onedark.vim'
 if (has("termguicolors"))
  set termguicolors
 endif
-
-let g:lightline = { 'colorscheme': 'nightowl' }
+let g:lightline = { 'colorscheme': 'onedark' }
 
 " 代码提示
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Fugitive 是 Git 的首要 Vim 插件
+" Git插件
 Plug 'tpope/vim-fugitive'
 
 " 状态栏美化
@@ -264,6 +182,8 @@ let g:airline_theme='night_owl'
 
 " EasyMotion
 Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_smartcase = 1
+nmap s <Plug>(easymotion-s)
 " 行级跳转(jk)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
@@ -289,7 +209,7 @@ Plug 'mhinz/vim-startify'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'tpope/vim-markdown'
 
-" 线
+" 缩进线
 Plug 'yggdroot/indentline'
 let g:indentLine_enabled = 1      " 使插件生效
 let g:indentLine_char = '¦'       " 设置缩进线字符，也可以为 '|', '┆', '┊' 等
@@ -299,6 +219,8 @@ let g:indentLine_conceallevel = 2     " 使插件正常运行
 Plug 'nvie/vim-flake8'
 Plug 'sirver/ultisnips'
 Plug 'davidhalter/jedi-vim'
+Plug 'tmhedberg/simpylfold'
+let g:SimpylFold_docstring_preview = 1
 
 " 注释插件
 Plug 'tpope/vim-commentary'
@@ -311,33 +233,11 @@ Plug 'scrooloose/syntastic'
 
 " 模糊搜索查找器
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " 格式化插件
 Plug 'vim-autoformat/vim-autoformat'
-
-" 支持扩展类似于 EMMET 的缩写
-Plug 'mattn/emmet-vim'
-" 仅为 html/css 启用
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-" 使用方法 键入 html:5 然后键入 <c-y>,
-" 仅在输入模式下启用
-let g:user_emmet_mode='i'
-
-Plug 'othree/html5.vim'
-
-Plug 'neoclide/coc-css'
-
-" 非常快速、多语法上下文相关的颜色名称突出显示器
-Plug 'ap/vim-css-color'
-
-Plug 'neoclide/coc-vetur'
-
-Plug 'pangloss/vim-javascript'
-
-Plug 'mxw/vim-jsx'
-
-Plug 'posva/vim-vue'
 
 " 使用 . 重复上次执行操作
 Plug 'tpope/vim-repeat'
@@ -356,27 +256,60 @@ Plug 'ryanoasis/vim-devicons'
 " 代码片段
 Plug 'honza/vim-snippets'
 
-call plug#end()
+" 标签
+Plug 'majutsushi/tagbar'
 
+" 全屏
+Plug 'vim-scripts/wimproved.vim'
+autocmd GUIEnter * silent! WToggleClean
+
+" 垂直水平居中当前窗口
+Plug 'jmckiern/vim-venter'
+
+" 删除尾随空格
+Plug 'ntpeters/vim-better-whitespace'
+" 保存文件时，文件中的所有行都将去除其尾随空格
+let g:strip_whitespace_on_save = 1
+" 只能更改为修改后的行
+let g:strip_only_modified_lines=1
+" 去除空格时去除文件末尾的白线
+let g:strip_whitelines_at_eof=1
+" 忽略仅包含空格的行
+let g:better_whitespace_skip_empty_lines=1
+" 默认情况下，在保存文件时去除空格之前，系统会要求您进行确认
+let g:strip_whitespace_confirm=0
+
+" json
+Plug 'elzr/vim-json'
+
+call plug#end()
 " 结束
 
 set background=dark
-" colorscheme gruvbox
-colorscheme night-owl
-
+colorscheme onedark
 
 " 格式化
 noremap <F3> :Autoformat<CR>
 
-set nocompatible
-
 nmap <F6> :TagbarToggle<CR>
 
+" 全屏
+nnoremap <f11> :WToggleFullscreen<CR>
+
+nnoremap <f12>  :VenterToggle<CR>             " 垂直水平居中窗口
+
 " 搜索
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_ShowHidden = 1 " 设置1则显示隐藏文件. 默认值0.
-let g:Lf_PreviewInPopup = 1 " 设置成1, 预览(preview)会在弹出(popup)窗口里显示, 而不会在原来的文件所在的窗口里显示. 默认值是0.
-let g:Lf_ReverseOrder = 1 " 设置为1, 结果从下到上显示, 跟fzf/CtrlP一致, 默认是0, 从上倒下显示.
+"<Leader>f在当前目录搜索文件
+nnoremap <silent> <Leader>f :Files<CR>
+"<Leader>b切换Buffer中的文件
+nnoremap <silent> <Leader>b :Buffers<CR>
+"<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+nnoremap <silent> <Leader>h :History<CR>
+
+" let g:Lf_ShortcutF = '<c-p>'
+" let g:Lf_ShowHidden = 1 " 设置1则显示隐藏文件. 默认值0.
+" let g:Lf_PreviewInPopup = 1 " 设置成1, 预览(preview)会在弹出(popup)窗口里显示, 而不会在原来的文件所在的窗口里显示. 默认值是0.
+" let g:Lf_ReverseOrder = 1 " 设置为1, 结果从下到上显示, 跟fzf/CtrlP一致, 默认是0, 从上倒下显示.
 " <C-C>, <ESC> : 退出
 " <C-R> : 在模糊查询和正则表达式模式间切换
 " <C-F> : 在全路径搜索和名字搜索模式间切换
@@ -390,7 +323,6 @@ let g:Lf_ReverseOrder = 1 " 设置为1, 结果从下到上显示, 跟fzf/CtrlP�
 " <C-P> : 预览选中结果
 " <C-Up> : 在预览popup窗口里滚动向上
 " <C-Down> : 在预览popup窗口里滚动向下
-
 
 " 进行项目树的切换
 map <C-e> :NERDTreeToggle<CR>
@@ -406,7 +338,6 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeWinSize=25                    " 设置宽度
 let NERDTreeShowHidden=1                  " 项目树是否显示隐藏文件
 
-
 " F8键就可以实时预览，按下F9键就可以停止预览。
 " 注: 这个Markdown-preview插件是需要Vim编辑器有Python2或者3的支持的。
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -414,34 +345,25 @@ imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
 nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
 imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
 
-let g:jedi#environment_path = "E:\python/python.exe"
-
 " ----- 调用python -----
 " 按 F4 调用当前脚本
 autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 autocmd BufRead *.py nmap <F4> :!python %<CR>
-
-" vue
-au BufNewFile,BufRead *.html,*.js,*.vue set tabstop=2
-au BufNewFile,BufRead *.html,*.js,*.vue set softtabstop=2
-au BufNewFile,BufRead *.html,*.js,*.vue set shiftwidth=2
-au BufNewFile,BufRead *.html,*.js,*.vue set expandtab
-au BufNewFile,BufRead *.html,*.js,*.vue set autoindent
-au BufNewFile,BufRead *.html,*.js,*.vue set fileformat=unix
-autocmd FileType vue syntax sync fromstart
-
+let g:jedi#environment_path = "E:\python/python.exe"
 
 " 分屏方式
 " :split 缩写 :sp or Ctrl-w s 上下分屏
 " :vsplit 缩写 :vs or Ctrl-w v 左右分屏
 " :diffsplit 缩写 :diffs diff 模式打开一个分屏，后面可以加上 {filename}
+"
 " 窗口跳转
 " Ctrl-w w 激活下一个窗口
 " Ctrl-w j 激活下方窗口
 " Ctrl-w k 激活上方窗口
 " Ctrl-w h 激活左侧窗口
 " Ctrl-w l 激活右侧窗口
+"
 " 屏幕缩放
 " Ctrl-w = 平均窗口尺寸
 " Ctrl-w + 增加高度
@@ -450,7 +372,6 @@ autocmd FileType vue syntax sync fromstart
 " Ctrl-w > 增加宽度
 " Ctrl-w < 缩减宽度
 " Ctrl-w | 最大宽度
-
 
 " 创建标签页
 " :tabnew or :tabedit 缩写 :tabe 打开新标签页
@@ -463,12 +384,20 @@ autocmd FileType vue syntax sync fromstart
 " gT or :tabprevious 缩写 :tabp 上一个标签页（第一个会循环到最后一个）
 " :tabrewind 缩写 :tabr or :tabfirst 缩写 :tabfir 到第一个
 " :tablast 缩写 :tabl 到最后一个标签页
+"
 " 关闭标签页
 " :tabclose 缩写 :tabc 关闭当前标签页
 " :-tabc 关闭上一个标签页
 " :+tabc 关闭下一个标签页
 " :tabonly 缩写 :tabo 关闭其他标签页
 
+" F3 格式化
+" F4 运行python
+" F6 tags
+" F8 markdown预览
+" F9 markdown关闭
+" F11 全屏
+" F12 垂直水平居中
 
 set noundofile
 set nobackup
