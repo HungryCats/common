@@ -4,6 +4,8 @@
 imap jk <Esc>
 " 设置leader键
 let mapleader=" "
+:set keep-english-in-normal
+:set keep-english-in-normal-and-restore-in-insert
 
 " surround插件
 set surround
@@ -43,7 +45,7 @@ set noswapfile
 " 启用鼠标
 set mouse=a
 " "设置在光标距离窗口顶部或底部一定行数时，开始滚动屏幕内容的行为
-set scrolloff=5
+set scrolloff=10
 "Vim 会在您输入搜索模式的过程中逐步匹配并高亮显示匹配的文本
 set incsearch
 "--在搜索时忽略大小写
@@ -128,8 +130,9 @@ noremap <leader>d  :action ActivateDatabaseToolWindow<CR>
 
 nnoremap gd :<C-u>action GotoDeclaration<CR>
 nnoremap gi :<C-u>action GotoImplementation<CR>
-nnoremap gh :<C-u>action Back<CR>
+nnoremap gb :<C-u>action Back<CR>
 nnoremap gl :<C-u>action Forward<CR>
+nnoremap gh :action QuickJavaDoc<cr>
 
 " ide与vim的快捷键持久化
 sethandler <C-A> a:ide

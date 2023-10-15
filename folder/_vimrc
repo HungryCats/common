@@ -116,9 +116,7 @@ nnoremap <leader>z :set wrap! wrap?<CR>
 set ruler                                     " 在状态栏显示光标的当前位置（位于哪一行哪一列）。
 set noswapfile                                " 不创建交换文件。交换文件主要用于系统崩溃时恢复文件，文件名的开头是.、结尾是.swp。
 set noundofile                                " 不保留撤销历史。
-set novisualbell                              "关掉可视化响铃警报
-set noerrorbells                              "关掉错误警报
-set visualbell t_vb=                          "关掉警报
+set vb t_vb=
 au GuiEnter * set t_vb=
 set history=1000                              " Vim 需要记住多少次历史操作。
 
@@ -163,10 +161,13 @@ xmap rs  <Plug>ReplaceWithRegisterVisual
 
 " 主题
 Plug 'joshdick/onedark.vim'
+Plug 'haishanh/night-owl.vim'
 if (has("termguicolors"))
  set termguicolors
 endif
 let g:lightline = { 'colorscheme': 'onedark' }
+let g:lightline = { 'colorscheme': 'nightowl' }
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " 代码提示
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -256,7 +257,7 @@ Plug 'ryanoasis/vim-devicons'
 " 代码片段
 Plug 'honza/vim-snippets'
 
-" 标签
+" 文件的整体结构视图
 Plug 'majutsushi/tagbar'
 
 " 全屏
@@ -282,11 +283,20 @@ let g:strip_whitespace_confirm=0
 " json
 Plug 'elzr/vim-json'
 
+" javascript
+Plug 'pangloss/vim-javascript'
+
+Plug 'ervandew/supertab'
+
+" 当您打开文件或目录时，Rooter 会将工作目录更改为项目根目录。
+Plug 'airblade/vim-rooter'
+
 call plug#end()
 " 结束
 
 set background=dark
 colorscheme onedark
+" colorscheme night-owl
 
 " 格式化
 noremap <F3> :Autoformat<CR>
