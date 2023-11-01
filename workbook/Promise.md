@@ -167,7 +167,7 @@ mineReadFile('./resource/content.txt')
 
 ```
 
-## 🫠util.promisify方法进行promise风格转化
+## 🐱‍👤util.promisify方法进行promise风格转化
 
 ```js
 /* 
