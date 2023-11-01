@@ -28,7 +28,7 @@ p.then((vlaue) => {
 
 ---
 
-## 🫡fs读取文件
+## 💕fs读取文件
 
 ```js
 const fs = require('fs')
