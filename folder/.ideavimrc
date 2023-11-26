@@ -1,140 +1,79 @@
-" Source your _vimrc
-" source ~/_vimrc
-
 imap jk <Esc>
-" 设置leader键
 let mapleader=" "
-:set keep-english-in-normal
-:set keep-english-in-normal-and-restore-in-insert
 
-" surround插件
 set surround
 
-" easymotion
+set commentary
+
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+
 let g:EasyMotion_do_mapping = 0
 set easymotion
 map <leader><leader> <Plug>(easymotion-s)
 
-" 仿真NERDTree插件
-" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
-set NERDTree
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-
-" 复制时高亮
 set highlightedyank
 let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 
-" https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
-set ReplaceWithRegister'
-nnoremap rs  <Plug>ReplaceWithRegisterOperator
-nnoremap rss <Plug>ReplaceWithRegisterLine
+set ReplaceWithRegister
+nmap rs  <Plug>ReplaceWithRegisterOperator
+nmap rss <Plug>ReplaceWithRegisterLine
 vmap rs  <Plug>ReplaceWithRegisterVisual
 
-" 注释
-set commentary
+set idearefactormode=keep
 
-"提示音静音
 set noerrorbells
 set visualbell
-"编码设置
 set encoding=utf-8
-"设置取消备份 禁止临时文件生成
 set nobackup
 set noswapfile
-" 启用鼠标
 set mouse=a
-" "设置在光标距离窗口顶部或底部一定行数时，开始滚动屏幕内容的行为
-set scrolloff=10
-"Vim 会在您输入搜索模式的过程中逐步匹配并高亮显示匹配的文本
+set scrolloff=5
 set incsearch
-"--在搜索时忽略大小写
 set ignorecase
-" 有一个或以上大写字母时仍大小写敏感
 set smartcase
-"--将搜索匹配的文本高亮显示
 set hlsearch
-" 去掉搜索高亮
-nmap <ESC> :noh<CR>
-" 在状态栏显示正在输入的命令
 set showmode
-"总是显示状态行 
 set laststatus=2
-"--设置相对行号 和 当前行的绝对行号
 set number
 set relativenumber
-" Vim 的默认寄存器和系统剪贴板共享
 set clipboard+=unnamed
 set history=100000
-"--设置返回normal模式时回到英文输入法
-set keep-english-in-normal
-" 移动到行首
-nnoremap H ^
-" 移动到行尾
-nnoremap L $
-" 复制到行末
-nnoremap Y y$
-" 插入模式下的移动
-imap <C-h> <Left>
-imap <C-j> <Down>
-imap <C-k> <Up>
-imap <C-l> <Right>
-" 打开终端
-nmap `` <Action>(ActivateTerminalToolWindow)
-"--普通模式下使用回车键，向下/向上 增加一行
+
+nmap Q :wq<CR>
+nmap H ^
+nmap L $
+nmap Y y$
+nmap <ESC> :noh<CR>
 nmap <CR> o<Esc>
-" nmap <S-Enter> O<Esc>
+nmap gh :action QuickJavaDoc<CR>
 
-" 生成get set方法
-nnoremap <Leader>cc :action Generate<CR>
+nmap `` <Action>(ActivateTerminalToolWindow)
 
-" 注释
-"nmap gcc <Action>(CommentByLineComment)
-"vmap gc <Action>(CommentByLineComment)<Esc>
+nmap <leader>r :action RenameElement<CR>
+nmap <leader>h :action PreviousTab<CR>
+nmap <leader>l :action NextTab<CR>
+nmap <leader>d <C-d>
+nmap <leader>u <C-u>
 
-"翻译
+nmap sh <C-W>h
+nmap sl <C-W>l
+nmap sj <C-W>j
+nmap sk <C-W>k
+nmap ss <C-W>s
+nmap sv <C-W>v
+
+nmap ,r :action Run<CR>
+nmap ,rc :action RunClass<CR>
+nmap ,d :action Debug<CR>
+nmap ,dc :action DebugClass<CR>
+nmap ,c :action Stop<CR>
+
 let g:WhichKeyDesc_Translate = "<leader>t Translate"
 nmap <leader>t <action>($EditorTranslateAction)
 vmap <leader>t <action>($EditorTranslateAction)
 
-" 重命名
-nnoremap <leader>r :action RenameElement<CR>
-
-" (保存关闭)
-nnoremap Q :wq<CR>
-
-" Window operation
-" (关于窗口操作)
-" 窗口之间移动
-nnoremap sh <C-W>h
-nnoremap sl <C-W>l
-nnoremap sj <C-W>j
-nnoremap sk <C-W>k
-"上下分屏;
-nnoremap ss <C-W>s
-"横向分屏
-nnoremap sv <C-W>v
-
-nnoremap ,r :action Run<CR>
-nnoremap ,rc :action RunClass<CR>
-nnoremap ,d :action Debug<CR>
-nnoremap ,dc :action DebugClass<CR>
-nnoremap ,c :action Stop<CR>
-" New
-"nnoremap <leader>g :action NewGroup<CR>
-
-"激活maven窗口
-noremap <leader>m  :action ActivateMavenToolWindow<CR>
-"激活database窗口
-noremap <leader>d  :action ActivateDatabaseToolWindow<CR>
-
-nnoremap gd :<C-u>action GotoDeclaration<CR>
-nnoremap gi :<C-u>action GotoImplementation<CR>
-nnoremap gb :<C-u>action Back<CR>
-nnoremap gl :<C-u>action Forward<CR>
-nnoremap gh :action QuickJavaDoc<cr>
-
-" ide与vim的快捷键持久化
 sethandler <C-A> a:ide
 sethandler <C-C> a:ide
 sethandler <C-V> a:ide
@@ -146,12 +85,5 @@ sethandler <C-S> a:ide
 sethandler <C-B> a:ide
 sethandler <C-P> a:ide
 sethandler <C-O> a:ide
-sethandler <C-H> a:vim
-sethandler <C-L> a:vim
-sethandler <C-J> a:vim
-sethandler <C-K> a:vim
-sethandler <C-Q> a:vim
-
-" vim模式开关
-nmap <leader>vim <Action>(VimPluginToggle)
-
+sethandler <C-E> a:ide
+sethandler <C-N> a:vim
